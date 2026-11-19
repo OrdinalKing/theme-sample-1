@@ -1,0 +1,358 @@
+.accounts-page::before {
+  background: radial-gradient(80rem 46rem at 84% -6%, rgba(217, 164, 65, 0.1), transparent 60%),
+    repeating-linear-gradient(96deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 5px);
+}
+
+.accounts-page main {
+  padding: 40px 44px 70px;
+  max-width: 1280px;
+}
+
+/* header */
+.accounts-page .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.accounts-page h1 {
+  font-size: clamp(26px, 3.2vw, 36px);
+  font-weight: 500;
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+}
+.accounts-page .top p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.accounts-page .session {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 15px;
+  background: var(--panel);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.accounts-page .session svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--scan);
+  fill: none;
+  stroke-width: 1.6;
+}
+.accounts-page .session b {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.accounts-page .totals {
+  display: flex;
+  gap: 38px;
+  flex-wrap: wrap;
+  margin: 30px 0 34px;
+  padding: 22px 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: linear-gradient(180deg, var(--panel), #0c121a);
+}
+.accounts-page .totals div {
+  min-width: 150px;
+}
+.accounts-page .totals span {
+  display: block;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+.accounts-page .totals strong {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  margin-top: 2px;
+}
+.accounts-page .totals .up {
+  color: var(--brass-soft);
+  font-size: 20px;
+}
+
+/* daily rewards banner */
+.accounts-page .rewards-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: -14px 0 34px;
+  padding: 14px 20px;
+  border: 1px solid var(--brass-dim);
+  border-radius: var(--r);
+  background: linear-gradient(100deg, #2a2213, #141c26 60%);
+  transition: border-color 0.25s, transform 0.25s;
+}
+.accounts-page .rewards-cta:hover,
+.accounts-page .rewards-cta:focus-visible {
+  border-color: var(--brass);
+  transform: translateY(-2px);
+  outline: none;
+}
+.accounts-page .rewards-cta:focus-visible {
+  box-shadow: 0 0 0 2px var(--scan);
+}
+.accounts-page .rewards-cta .gift {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #1a1710;
+  border: 1px solid var(--brass-dim);
+}
+.accounts-page .rewards-cta svg {
+  fill: none;
+  stroke: var(--brass);
+  stroke-width: 1.6;
+}
+.accounts-page .rewards-cta .gift svg {
+  width: 24px;
+  height: 24px;
+}
+.accounts-page .cta-text {
+  flex: 1;
+  min-width: 0;
+}
+.accounts-page .cta-text b {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+.accounts-page .cta-text small {
+  color: var(--muted);
+  font-size: 13px;
+}
+.accounts-page .cta-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--brass-soft);
+  font-size: 13.5px;
+  white-space: nowrap;
+}
+.accounts-page .cta-go svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* the vault wall */
+.accounts-page .wall-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.accounts-page .wall-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.accounts-page .wall {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.accounts-page .safe {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 20px;
+  align-items: start;
+  background: linear-gradient(165deg, #182330, #0d141c);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.accounts-page .safe::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--brass);
+  opacity: 0.55;
+}
+.accounts-page .safe.locked::before {
+  background: var(--muted);
+  opacity: 0.35;
+}
+.accounts-page .safe:hover,
+.accounts-page .safe:focus-visible {
+  border-color: var(--brass-dim);
+  transform: translateY(-3px);
+  outline: none;
+}
+.accounts-page .safe:focus-visible {
+  box-shadow: 0 0 0 2px var(--scan);
+}
+.accounts-page .safe .dial {
+  transition: transform 0.7s cubic-bezier(0.3, 0.9, 0.3, 1);
+  transform-origin: 60px 60px;
+}
+.accounts-page .safe:hover .dial,
+.accounts-page .safe:focus-visible .dial {
+  transform: rotate(140deg);
+}
+.accounts-page .safeicon {
+  width: 92px;
+  height: 92px;
+}
+
+.accounts-page .name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0 0 2px;
+}
+.accounts-page .num {
+  color: var(--muted);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 14px;
+}
+.accounts-page .bal {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 29px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+.accounts-page .rate {
+  color: var(--brass-soft);
+  font-size: 13px;
+  margin: 4px 0 16px;
+}
+.accounts-page .rate em {
+  font-style: normal;
+  color: var(--muted);
+}
+
+.accounts-page .goal {
+  margin-top: 4px;
+}
+.accounts-page .goalbar {
+  height: 5px;
+  border-radius: 3px;
+  background: #1e2a36;
+  overflow: hidden;
+}
+.accounts-page .goalbar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--brass-dim), var(--brass));
+}
+.accounts-page .goalmeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 7px;
+}
+.accounts-page .goalmeta b {
+  color: var(--text);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.accounts-page .lockline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 14px;
+}
+.accounts-page .lockline svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--muted);
+  fill: none;
+  stroke-width: 1.7;
+}
+
+.accounts-page .open-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--brass);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+.accounts-page .safe:hover .open-link {
+  border-bottom-color: var(--brass-dim);
+}
+
+.accounts-page .newvault {
+  display: grid;
+  place-content: center;
+  gap: 10px;
+  text-align: center;
+  border: 1px dashed var(--line);
+  border-radius: var(--r);
+  color: var(--muted);
+  padding: 34px;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.25s, color 0.25s;
+}
+.accounts-page .newvault:hover {
+  border-color: var(--brass-dim);
+  color: var(--text);
+}
+.accounts-page .newvault svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--brass);
+  fill: none;
+  stroke-width: 1.6;
+  justify-self: center;
+}
+
+@media (max-width: 760px) {
+  .accounts-page main {
+    padding: 28px 20px 60px;
+  }
+  .accounts-page .rewards-cta {
+    flex-wrap: wrap;
+    padding: 14px 16px;
+  }
+  .accounts-page .cta-go {
+    margin-left: 58px;
+  }
+  .accounts-page .safe {
+    grid-template-columns: 66px 1fr;
+    gap: 14px;
+    padding: 18px;
+  }
+  .accounts-page .safeicon {
+    width: 66px;
+    height: 66px;
+  }
+}

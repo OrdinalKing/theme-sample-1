@@ -1,0 +1,49 @@
+/* Tailwind CSS 3.2 (last version that runs on Node 12). Preflight, Tailwind's
+   reset, is turned off in tailwind.config.cjs so the converted pages keep their
+   original look; `base` then only adds the --tw-* variables utilities rely on. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Rules shared by every page. Page-specific rules live next to each page
+   and are scoped under that page's root class so they never collide. */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  min-height: 100%;
+}
+body {
+  margin: 0;
+  background: #080b11;
+  color: #e6ecf2;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3,
+.fig {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+.fig {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.015em;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font-family: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,689 @@
+/* The sign-in page fills the viewport and does not scroll on desktop
+   (the original set html,body{height:100%;overflow:hidden}). */
+.signin-page {
+  --ink: #070a0f;
+  --steel: #0f151d;
+  --panel: #121a23;
+  --raise: #1b2631;
+  --line: #26333f;
+  --line-soft: #1b242e;
+  --brass: #d9a441;
+  --brass-soft: #f2d293;
+  --brass-dim: #7a5e27;
+  --scan: #63e6d2;
+  --text: #e8eef4;
+  --muted: #7c8a99;
+  --red: #e0695f;
+  --accent: #63e6d2;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--text);
+}
+
+.signin-page .bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+.signin-page .vig {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(70% 62% at 63% 48%, transparent 38%, rgba(4, 6, 10, 0.88) 100%);
+}
+
+.signin-page .shell {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(380px, 462px) 1fr;
+}
+
+/* ============ LEFT CONSOLE ============ */
+.signin-page .console {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 34px 22px;
+  border-right: 1px solid var(--line-soft);
+  background: linear-gradient(180deg, rgba(15, 21, 29, 0.94), rgba(7, 10, 15, 0.92));
+  backdrop-filter: blur(6px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.signin-page .brandrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.signin-page .brandrow svg {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+}
+.signin-page .brandrow b {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  font-size: 12.5px;
+}
+.signin-page .brandrow small {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 11.5px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.signin-page .pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  animation: signin-pulse 2.4s infinite;
+}
+@keyframes signin-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.signin-page .tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #0c1219;
+  margin-bottom: 24px;
+}
+.signin-page .tabs button {
+  padding: 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.signin-page .tabs button[aria-selected='true'] {
+  background: var(--raise);
+  color: var(--text);
+}
+.signin-page .tabs button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.signin-page h1 {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+.signin-page .lede {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 22px;
+  max-width: 40ch;
+}
+
+.signin-page .rail {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+}
+.signin-page .rail li {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 13px;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--muted);
+  font-size: 14px;
+  transition: color 0.3s;
+}
+.signin-page .rail li .pip {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.signin-page .rail li[data-s='now'] {
+  color: var(--text);
+}
+.signin-page .rail li[data-s='now'] .pip {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(99, 230, 210, 0.09);
+}
+.signin-page .rail li[data-s='ok'] {
+  color: var(--text);
+}
+.signin-page .rail li[data-s='ok'] .pip {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: #170f02;
+}
+.signin-page .rail .st {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.signin-page .rail li[data-s='ok'] .st {
+  color: var(--brass-soft);
+}
+
+.signin-page .card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.signin-page .card h2 {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 0 4px;
+}
+.signin-page .card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13.5px;
+}
+
+.signin-page .tel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+.signin-page .tel div {
+  background: #0c1219;
+  padding: 10px 13px;
+}
+.signin-page .tel span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+.signin-page .tel b {
+  font-family: 'Space Grotesk', sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.signin-page .field {
+  position: relative;
+  margin-bottom: 12px;
+}
+.signin-page .field input {
+  width: 100%;
+  padding: 21px 14px 7px;
+  border-radius: 10px;
+  background: #0c1219;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14.5px;
+  transition: border-color 0.2s;
+}
+.signin-page .field label {
+  position: absolute;
+  left: 14px;
+  top: 13px;
+  color: var(--muted);
+  font-size: 13.5px;
+  pointer-events: none;
+  transition: transform 0.18s, font-size 0.18s, color 0.18s;
+  transform-origin: left top;
+}
+.signin-page .field input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.signin-page .field input:focus + label,
+.signin-page .field input:not(:placeholder-shown) + label {
+  transform: translateY(-9px) scale(0.78);
+}
+.signin-page .field input:focus + label {
+  color: var(--accent);
+}
+
+.signin-page .goals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 6px 0 14px;
+}
+.signin-page .goals button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  background: #0c1219;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.2s;
+}
+.signin-page .goals button svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  flex: 0 0 17px;
+}
+.signin-page .goals button:hover {
+  color: var(--text);
+}
+.signin-page .goals button[aria-pressed='true'] {
+  border-color: var(--brass);
+  color: var(--brass-soft);
+  background: #1a1608;
+}
+
+.signin-page .check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+.signin-page .check input {
+  accent-color: var(--brass);
+  margin-top: 3px;
+}
+
+.signin-page .btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid var(--brass);
+  background: var(--brass);
+  color: #170f02;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: filter 0.2s, transform 0.07s;
+}
+.signin-page .btn:hover {
+  filter: brightness(1.08);
+}
+.signin-page .btn:active {
+  transform: translateY(1px);
+}
+.signin-page .btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.signin-page .btn[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.signin-page .btn.ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line);
+  margin-top: 8px;
+}
+.signin-page .err {
+  color: var(--red);
+  font-size: 12.5px;
+  min-height: 18px;
+  margin: 0 0 6px;
+}
+
+.signin-page .log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+}
+.signin-page .log li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+  padding: 6px 0;
+  opacity: 0.25;
+  transform: translateX(-6px);
+}
+.signin-page .log li.on {
+  opacity: 1;
+  transform: none;
+  transition: 0.35s;
+  color: var(--text);
+}
+.signin-page .log li i {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--brass-dim);
+  flex: 0 0 14px;
+  position: relative;
+}
+.signin-page .log li.on i {
+  border-color: var(--brass);
+}
+.signin-page .log li.on i::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--brass);
+}
+
+.signin-page .vaultno {
+  border: 1px solid var(--brass-dim);
+  border-radius: 12px;
+  background: #18140a;
+  padding: 16px;
+  margin: 14px 0;
+}
+.signin-page .vaultno span {
+  color: var(--muted);
+  font-size: 11.5px;
+  display: block;
+}
+.signin-page .vaultno b {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 21px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  color: var(--brass-soft);
+  font-weight: 500;
+}
+
+.signin-page .foot {
+  margin-top: auto;
+  padding-top: 18px;
+  color: var(--muted);
+  font-size: 11.5px;
+  display: grid;
+  gap: 5px;
+}
+.signin-page .foot div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.signin-page .foot svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--brass-dim);
+  fill: none;
+  stroke-width: 1.7;
+  flex: 0 0 13px;
+}
+
+/* ============ RIGHT: THE DOOR ============ */
+.signin-page .stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  min-width: 0;
+}
+.signin-page .door {
+  width: min(76vh, 640px);
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+.signin-page .spinning .dialring {
+  animation: signin-spin 6s linear infinite;
+}
+@keyframes signin-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.signin-page .dialring {
+  transition: transform 1.1s cubic-bezier(0.35, 1, 0.35, 1);
+}
+.signin-page .bolt {
+  transition: transform 0.75s cubic-bezier(0.4, 1.4, 0.5, 1);
+}
+.signin-page .caption {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: min(460px, 86vw);
+}
+.signin-page .caption h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 3px;
+}
+.signin-page .caption p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  min-height: 20px;
+}
+
+.signin-page .win {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.signin-page .win[hidden] {
+  display: none;
+}
+.signin-page .win.act {
+  pointer-events: auto;
+}
+
+.signin-page .mesh circle {
+  fill: var(--accent);
+  opacity: 0;
+}
+.signin-page .mesh line {
+  stroke: var(--accent);
+  stroke-width: 0.7;
+  opacity: 0;
+}
+.signin-page .mesh.lit circle {
+  opacity: 0.95;
+  transition: opacity 0.3s;
+}
+.signin-page .mesh.lit line {
+  opacity: 0.4;
+  transition: opacity 0.5s;
+}
+.signin-page .mesh.done circle {
+  fill: var(--brass);
+  opacity: 0.95;
+}
+.signin-page .mesh.done line {
+  stroke: var(--brass);
+  opacity: 0.36;
+}
+.signin-page .beam {
+  opacity: 0;
+}
+.signin-page .beam.on {
+  opacity: 1;
+  animation: signin-sweep 1.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes signin-sweep {
+  0% {
+    transform: translateY(-88px);
+  }
+  50% {
+    transform: translateY(88px);
+  }
+  100% {
+    transform: translateY(-88px);
+  }
+}
+
+.signin-page .pad {
+  width: 186px;
+  height: 186px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+  border: 1px solid var(--line);
+  background: radial-gradient(circle at 50% 40%, #17222e, #0a1017);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.signin-page .pad:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+.signin-page .pad.hold {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 9px rgba(99, 230, 210, 0.07);
+}
+.signin-page .pad.ok {
+  border-color: var(--brass);
+  box-shadow: 0 0 0 9px rgba(217, 164, 65, 0.08);
+}
+.signin-page .print {
+  position: absolute;
+  width: 100px;
+  height: 114px;
+}
+.signin-page .print path {
+  fill: none;
+  stroke: #3b4b5a;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+.signin-page .print.lit {
+  clip-path: inset(100% 0 0 0);
+}
+.signin-page .print.lit path {
+  stroke: var(--brass);
+}
+.signin-page .minu {
+  position: absolute;
+  width: 100px;
+  height: 114px;
+  overflow: visible;
+}
+.signin-page .minu rect {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.2;
+  opacity: 0;
+}
+.signin-page .minu rect.on {
+  opacity: 0.9;
+  transition: opacity 0.25s;
+}
+
+.signin-page .code {
+  display: flex;
+  gap: 9px;
+}
+.signin-page .code b {
+  width: 40px;
+  height: 54px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #0c1219;
+  display: grid;
+  place-items: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  transition: 0.25s;
+}
+.signin-page .code b.set {
+  border-color: var(--brass);
+  color: var(--brass-soft);
+  background: #18140a;
+}
+
+.signin-page .engrave {
+  text-align: center;
+  max-width: 230px;
+}
+.signin-page .engrave svg {
+  width: 44px;
+  height: 44px;
+  stroke: var(--brass-dim);
+  fill: none;
+  stroke-width: 1.4;
+  margin-bottom: 10px;
+}
+.signin-page .engrave p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.signin-page .engrave h4 {
+  margin: 2px 0 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 19px;
+  color: var(--brass-soft);
+}
+
+@media (max-width: 1040px) {
+  .signin-page {
+    overflow-y: auto;
+  }
+  .signin-page .shell {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .signin-page .console {
+    border-right: 0;
+    border-bottom: 1px solid var(--line-soft);
+    order: 2;
+    padding: 24px 20px 34px;
+  }
+  .signin-page .stage {
+    order: 1;
+    padding: 20px 16px 56px;
+    min-height: 70vh;
+  }
+  .signin-page .caption {
+    bottom: -10px;
+  }
+}

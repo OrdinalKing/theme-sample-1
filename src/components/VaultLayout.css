@@ -1,0 +1,91 @@
+.vault-page {
+  --ink: #080b11;
+  --steel: #0f151d;
+  --panel: #141c26;
+  --raise: #1c2733;
+  --line: #26333f;
+  --brass: #d9a441;
+  --brass-soft: #f2d293;
+  --brass-dim: #7a5e27;
+  --scan: #63e6d2;
+  --text: #e6ecf2;
+  --muted: #7c8a99;
+  --red: #e0695f;
+  --r: 14px;
+  min-height: 100vh;
+  background: var(--ink);
+  color: var(--text);
+}
+/* Fixed backdrop; each page supplies its own gradient. */
+.vault-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.vault-shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100vh;
+}
+.vault-shell main {
+  flex: 1;
+}
+
+.vault-shell .spine {
+  width: 76px;
+  flex: 0 0 76px;
+  border-right: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--steel), #0b1017);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 0;
+  position: relative;
+}
+.vault-shell .spine::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  background: repeating-linear-gradient(180deg, transparent 0 58px, var(--brass-dim) 58px 66px);
+  opacity: 0.5;
+  border-radius: 4px;
+}
+.vault-shell .mark {
+  width: 34px;
+  height: 34px;
+}
+.vault-shell .spine-word {
+  writing-mode: vertical-rl;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  font-size: 11px;
+  color: var(--muted);
+}
+.vault-shell .avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--brass-dim);
+  display: grid;
+  place-items: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  color: var(--brass-soft);
+  background: #141c26;
+}
+
+@media (max-width: 760px) {
+  .vault-shell .spine {
+    width: 56px;
+    flex: 0 0 56px;
+  }
+}
